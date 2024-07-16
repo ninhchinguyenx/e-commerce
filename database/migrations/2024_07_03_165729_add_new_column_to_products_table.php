@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('product_sizes')) {
-
-            Schema::create('product_sizes', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->timestamps();
-            });
-        }
+            
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('public_id')->nullable();
+        });
     }
 
     /**
@@ -26,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_sizes');
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('new_column')->after('existing_column')->nullable();
+
+        });
     }
 };

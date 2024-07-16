@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_tag', function (Blueprint $table) {
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->foreignIdFor(Tag::class)->constrained();
+        if (!Schema::hasTable('product_tag')) {
+
+            Schema::create('product_tag', function (Blueprint $table) {
+                $table->foreignIdFor(Product::class)->constrained();
+                $table->foreignIdFor(Tag::class)->constrained();
 
 
-            $table->primary(['product_id', 'tag_id']);
-            $table->timestamps();
-        });
+                $table->primary(['product_id', 'tag_id']);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

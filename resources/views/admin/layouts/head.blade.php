@@ -7,6 +7,7 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico">
 
 @yield('style-libs')
+
 <!-- Bootstrap Css -->
 <link href="{{asset('theme/admin')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->

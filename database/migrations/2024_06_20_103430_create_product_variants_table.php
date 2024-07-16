@@ -14,17 +14,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_variants', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->foreignIdFor(ProductSize::class)->constrained();
-            $table->foreignIdFor(ProductColor::class)->constrained();
-            $table->unsignedInteger('quatity')->default(0);
-            $table->string('image')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('product_variants')) {
 
-            $table->unique(['product_id', 'product_size_id','product_color_id'], 'product_variant_id');
-        });
+            Schema::create('product_variants', function (Blueprint $table) {
+                $table->id();
+                $table->foreignIdFor(Product::class)->constrained();
+                $table->foreignIdFor(ProductSize::class)->constrained();
+                $table->foreignIdFor(ProductColor::class)->constrained();
+                $table->unsignedInteger('quatity')->default(0)->nullable();
+                $table->string('image')->nullable();
+                $table->timestamps();
+
+                $table->unique(['product_id', 'product_size_id', 'product_color_id'], 'product_variant_id');
+            });
+        }
     }
 
     /**

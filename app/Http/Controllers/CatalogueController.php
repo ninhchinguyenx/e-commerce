@@ -49,7 +49,8 @@ class CatalogueController extends Controller
      */
     public function edit(Catalogue $catalogue)
     {
-        //
+        dd(1);
+        die;
     }
 
     /**

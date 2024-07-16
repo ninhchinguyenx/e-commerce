@@ -12,12 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_galleries', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Product::class)->constrained();
-            $table->string('image');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('product_galleries')) {
+
+            Schema::create('product_galleries', function (Blueprint $table) {
+                $table->id();
+                $table->foreignIdFor(Product::class)->constrained();
+                $table->string('image');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

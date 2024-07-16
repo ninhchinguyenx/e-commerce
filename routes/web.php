@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/', function () {
@@ -29,5 +26,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
     Route::prefix('product')->as('product.')->group(function(){
         Route::resource('/',ProductController::class);
+        Route::get('{id}/edit', [ProductController::class, 'edit']);
     });
+
 });

@@ -10,7 +10,7 @@ class Catalogue extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'cover',        
+        'cover',
         'is_active',
     ];
 
@@ -18,7 +18,12 @@ class Catalogue extends Model
         'is_active' => 'boolean',
     ];
 
-    public function product(){
+    public function products()
+    {
         return $this->hasMany(Product::class);
+    }
+    public function product()
+    {
+        return $this->hasOne(Product::class);
     }
 }
